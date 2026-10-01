@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAPA | Infraestructura Tecnológica y Seguridad</title>
+    <meta name="description" content="Diseñamos, instalamos y mantenemos soluciones de conectividad, redes, videovigilancia e infraestructura tecnológica para hogares, oficinas y negocios.">
+    <meta name="keywords" content="instalación de redes, videovigilancia, infraestructura tecnológica, Wi-Fi empresarial, cableado estructurado, cámaras de seguridad">
+    <meta property="og:title" content="MAPA | Infraestructura Tecnológica">
+    <meta property="og:description" content="Infraestructura tecnológica que simplemente funciona. Soluciones personalizadas de redes y seguridad.">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="resources/MAPA_logo_noBackground/1.png">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons (Clean, professional icons) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* 
+        ====================================================================
+        CONFIGURACIÓN DE VARIABLES GLOBALES
+        ====================================================================
+        Modifica estos colores para cambiar el tema de todo el sitio web.
+        Los colores principales solicitados (1a4e83, 1f5684) están aquí.
+        */
+        :root {
+            --color-primary: #1a4e83;      /* Azul principal */
+            --color-secondary: #1f5684;    /* Azul secundario */
+            --color-dark: #0a1724;         /* Azul marino muy oscuro para fondos */
+            --color-dark-alt: #102336;     /* Azul marino alternativo para secciones */
+            --color-text-body: #475569;    /* Gris para textos largos */
+            --color-text-heading: #0f172a; /* Azul muy oscuro para títulos sobre blanco */
+            --color-light: #f8fafc;        /* Fondo gris muy claro */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Clases para animación de revelado al hacer scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Retrasos escalonados para elementos agrupados (ej. tarjetas) */
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+    </style>
+
+    <!-- Tailwind CSS Script -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--color-primary)',
+                        secondary: 'var(--color-secondary)',
+                        dark: 'var(--color-dark)',
+                        darkAlt: 'var(--color-dark-alt)',
+                        light: 'var(--color-light)',
+                        textBody: 'var(--color-text-body)',
+                        textHeading: 'var(--color-text-heading)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-textBody antialiased">
+
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2">
+                        <img src="./resources/MAPA_logo_noBackground/1.png" alt="MAPA Logo" class="h-12">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Inicio</a>
+                    <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Servicios</a>
+                    <a href="#comotrabajamos" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Como Trabajamos</a>
+                    <a href="#respaldotecnico" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Respaldo Técnico</a>
+                    <a href="#proyectos" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Proyectos</a>
+                    <a href="#nosotros" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Nosotros</a>
+                </nav>
+
+                <!-- Desktop CTA -->
+                <div class="hidden md:flex">
+                    <a href="#contacto" class="inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded text-white bg-primary hover:bg-secondary transition-colors shadow-sm">
+                        Contacto
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none p-2">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#inicio" class="mobile-link block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Inicio</a>
+                <a href="#servicios" class="mobile-link block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Servicios</a>
+                <a href="#comotrabajamos" class="mobile-link block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Como Trabajamos</a>
+                <a href="#respaldotecnico" class="mobile-link block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Respaldo Técnico</a>
+                <a href="#proyectos" class="mobile-link block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Proyectos</a>
+                <a href="#nosotros" class="mobile-link block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Nosotros</a>
+                <a href="#contacto" class="mobile-link mt-4 block w-full text-center px-4 py-3 border border-transparent text-base font-medium rounded text-white bg-primary hover:bg-secondary">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="inicio" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-dark text-white">
+            <!-- Background subtle pattern/gradient -->
+            <div class="absolute inset-0 z-0 opacity-20">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary via-dark to-darkAlt"></div>
+                <!-- Grilla sutil para dar toque de infraestructura/ingeniería -->
+                <div class="absolute inset-0" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px; opacity: 0.1;"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl reveal">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+                        Infraestructura tecnológica que <span class="text-blue-400">simplemente funciona.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
+                        Diseñamos, instalamos y mantenemos soluciones de conectividad, redes y seguridad para hogares, oficinas y negocios.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#servicios" class="inline-flex justify-center items-center px-6 py-3.5 border border-transparent text-base font-medium rounded text-white bg-primary hover:bg-secondary transition-colors shadow-lg">
+                            Conocer servicios
+                        </a>
+                        <a href="#contacto" class="inline-flex justify-center items-center px-6 py-3.5 border border-white/30 text-base font-medium rounded text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors">
+                            Solicitar cotización
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUÉ HACEMOS SECTION -->
+        <section id="servicios" class="py-24 bg-light">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <h2 class="text-sm font-semibold text-primary tracking-wider uppercase mb-2">Nuestros Servicios</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-textHeading">Soluciones integrales para tu infraestructura</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Servicio 1 -->
+                    <div class="bg-white p-8 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow reveal reveal-delay-1">
+                        <div class="w-14 h-14 bg-blue-50 text-primary rounded flex items-center justify-center mb-6">
+                            <i data-lucide="network" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-textHeading mb-4">Redes e infraestructura</h4>
+                        <ul class="space-y-3 text-textBody">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Diseño e instalación de redes.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Cableado estructurado.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Routers y switches.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Segmentación de redes.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Soluciones Wi-Fi eficientes.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Optimización de infraestructura.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Servicio técnico para solución de problemas.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Servicio 2 -->
+                    <div class="bg-white p-8 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow reveal reveal-delay-2">
+                        <div class="w-14 h-14 bg-blue-50 text-primary rounded flex items-center justify-center mb-6">
+                            <i data-lucide="shield-check" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-textHeading mb-4">Seguridad</h4>
+                        <ul class="space-y-3 text-textBody">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Videovigilancia integral.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Instalación de cámaras IP.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Configuración de NVR/DVR.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Acceso remoto.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Integración de seguridad.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Servicio 3 -->
+                    <div class="bg-white p-8 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow reveal reveal-delay-3">
+                        <div class="w-14 h-14 bg-blue-50 text-primary rounded flex items-center justify-center mb-6">
+                            <i data-lucide="server" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-textHeading mb-4">Servicios tecnológicos</h4>
+                        <ul class="space-y-3 text-textBody">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> VPN y acceso remoto seguro.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Servidores y almacenamiento.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Diagnóstico especializado.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Mantenimiento preventivo.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Soporte tecnológico continuo.</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i> Consultoría tecnológica.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como trabajamos SECTION -->
+        <section id="comotrabajamos" class="py-24 bg-primary text-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+                <i data-lucide="cpu" class="w-12 h-12 mx-auto mb-6 text-blue-200"></i>
+                <h2 class="text-3xl md:text-5xl font-bold mb-8 leading-tight">No solo instalamos. Diseñamos.</h2>
+                <p class="text-lg md:text-xl text-blue-100 leading-relaxed max-w-4xl mx-auto font-light">
+                    Una red, un sistema de seguridad o una infraestructura tecnológica no debería ser solamente un conjunto de equipos conectados. En MAPA, diseñamos cada instalación considerando las <strong>necesidades actuales, la seguridad, el rendimiento y el crecimiento futuro</strong>. Pensamos primero en la solución y después en los dispositivos.
+                </p>
+            </div>
+        </section>
+
+        <!-- CÓMO TRABAJAMOS SECTION -->
+        <section  class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-sm font-semibold text-primary tracking-wider uppercase mb-2">Metodología</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-textHeading">Cómo trabajamos</h3>
+                </div>
+
+                <div class="relative">
+                    <!-- Línea conectora (visible en desktop) -->
+                    <div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -translate-y-1/2 z-0"></div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
+                        
+                        <!-- Paso 1 -->
+                        <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm relative reveal reveal-delay-1 text-center lg:text-left">
+                            <div class="w-12 h-12 bg-dark text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0 shadow-md">01</div>
+                            <h4 class="text-lg font-bold text-textHeading mb-2">Diagnóstico</h4>
+                            <p class="text-sm text-textBody">Entendemos las necesidades a fondo y revisamos meticulosamente la infraestructura existente.</p>
+                        </div>
+
+                        <!-- Paso 2 -->
+                        <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm relative reveal reveal-delay-2 text-center lg:text-left">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0 shadow-md">02</div>
+                            <h4 class="text-lg font-bold text-textHeading mb-2">Diseño</h4>
+                            <p class="text-sm text-textBody">Proponemos una solución adecuada y escalable adaptada al espacio, presupuesto y crecimiento esperado.</p>
+                        </div>
+
+                        <!-- Paso 3 -->
+                        <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm relative reveal reveal-delay-3 text-center lg:text-left">
+                            <div class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0 shadow-md">03</div>
+                            <h4 class="text-lg font-bold text-textHeading mb-2">Implementación</h4>
+                            <p class="text-sm text-textBody">Instalamos, configuramos y probamos exhaustivamente cada uno de los componentes.</p>
+                        </div>
+
+                        <!-- Paso 4 -->
+                        <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm relative reveal text-center lg:text-left">
+                            <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0 shadow-md">04</div>
+                            <h4 class="text-lg font-bold text-textHeading mb-2">Entrega</h4>
+                            <p class="text-sm text-textBody">Documentamos toda la infraestructura y dejamos una solución organizada, limpia y mantenible.</p>
+                        </div>
+
+                        <!-- Paso 5 -->
+                        <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm relative reveal text-center lg:text-left">
+                            <div class="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0 shadow-md">05</div>
+                            <h4 class="text-lg font-bold text-textHeading mb-2">Soporte</h4>
+                            <p class="text-sm text-textBody">Seguimos disponibles y a tu lado para mantenimiento, soporte técnico y futuras ampliaciones.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: INGENIERÍA DETRÁS DE MAPA -->
+        <section id="respaldotecnico" class="py-24 bg-gray-50 border-t border-b border-gray-100">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Encabezado Principal -->
+                <div class="reveal mb-14 text-left md:text-center">
+                    <h2 class="text-sm font-bold text-primary tracking-wider uppercase mb-3">Respaldo Técnico</h2>
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8 tracking-tight">
+                        Ingeniería detrás de MAPA
+                    </h3>
+                    <div class="text-lg text-gray-600 leading-relaxed space-y-6 max-w-3xl mx-auto">
+                        <p>
+                            Combinamos la formación especializada en redes con experiencia práctica en la implementación y mantenimiento de infraestructura tecnológica real.
+                        </p>
+                        <p>
+                            Nuestro enfoque parte de entender cómo debe funcionar una infraestructura como conjunto: <strong>conectividad, redes, seguridad, equipos y usuarios deben trabajar de forma integrada, confiable y preparada para crecer.</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bloque de Formación y Evidencia Visual -->
+                <div class="bg-white rounded-2xl p-8 md:p-12 border border-gray-200 shadow-sm reveal reveal-delay-1">
+                    
+                    <!-- Texto de Formación -->
+                    <div class="max-w-2xl mx-auto mb-12 text-left md:text-center">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Formación certificada por Cisco</h4>
+                    </div>
+
+                    <!-- Galería de Badges (Limpia y secundaria) -->
+                    <!-- En móvil se acomodan naturalmente (wrap), en desktop se ven en línea -->
+                    <div class="flex flex-wrap justify-center gap-10 md:gap-16 mb-12">
+                        
+                        <!-- Badge 1: CCNA 1 -->
+                        <div class="flex flex-col items-center text-center w-[160px]">
+                            <div class="w-24 h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-full border border-gray-100 p-2">
+                                <!-- INSTRUCCIÓN: Cuando tengas la imagen real, descomenta la etiqueta <img> y borra el <svg> -->
+                                <img src="resources/badges/CCNAITN__1_.png" alt="Badge CCNA 1 - Introduction to Networks" class="w-full h-full object-contain"> 
+                            </div>
+                            <span class="text-sm font-bold text-gray-900 block mb-1">CCNA ITN</span>
+                            <span class="text-xs text-gray-500 leading-snug">Introduction to Networks</span>
+                        </div>
+
+                        <!-- Badge 2: CCNA 2 -->
+                        <div class="flex flex-col items-center text-center w-[160px]">
+                            <div class="w-24 h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-full border border-gray-100 p-2">
+                                <!-- INSTRUCCIÓN: Cuando tengas la imagen real, descomenta la etiqueta <img> y borra el <svg> -->
+                                <img src="resources/badges/CCNASRWE__1_.png" alt="Badge CCNA 2 - Switching, Routing, and Wireless Essentials" class="w-full h-full object-contain">
+                            </div>
+                            <span class="text-sm font-bold text-gray-900 block mb-1">CCNA SRWE</span>
+                            <span class="text-xs text-gray-500 leading-snug">Switching, Routing, and Wireless Essentials</span>
+                        </div>
+
+                        <!-- Badge 3: CCNA 3 -->
+                        <div class="flex flex-col items-center text-center w-[160px]">
+                            <div class="w-24 h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-full border border-gray-100 p-2">
+                                <!-- INSTRUCCIÓN: Cuando tengas la imagen real, descomenta la etiqueta <img> y borra el <svg> -->
+                                <img src="resources/badges/CCNAENSA__1_.png" alt="Badge CCNA 3 - Enterprise Networking, Security, and Automation" class="w-full h-full object-contain"> 
+                            </div>
+                            <span class="text-sm font-bold text-gray-900 block mb-1">CCNA ENSA</span>
+                            <span class="text-xs text-gray-500 leading-snug">Enterprise Networking, Security, and Automation</span>
+                        </div>
+
+                        <!-- Badge 4: Endpoints security -->
+                        <div class="flex flex-col items-center text-center w-[160px]">
+                            <div class="w-24 h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-full border border-gray-100 p-2">
+                                <!-- INSTRUCCIÓN: Cuando tengas la imagen real, descomenta la etiqueta <img> y borra el <svg> -->
+                                <img src="resources/badges/EndpointSecurity.png" alt="Badge Endpoint Security - The holder of this student-level credential has a broad understanding of basic concepts of network security, as well as operating systems and endpoint security." class="w-full h-full object-contain"> 
+                            </div>
+                            <span class="text-sm font-bold text-gray-900 block mb-1">Endpoint Security</span>
+                            <span class="text-xs text-gray-500 leading-snug">Skills to secure your network all the way to the edge.</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROYECTOS SECTION -->
+        <section id="proyectos" class="py-24 bg-light border-y border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                    <div class="max-w-2xl">
+                        <h2 class="text-sm font-semibold text-primary tracking-wider uppercase mb-2">Casos de Estudio</h2>
+                        <h3 class="text-3xl md:text-4xl font-bold text-textHeading mb-4 md:mb-0">Proyectos destacados</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Proyecto Placeholder 1 -->
+                    <div class="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-shadow reveal reveal-delay-1 group">
+                        <!-- Inicio del Carrusel -->
+                        <div class="h-64 bg-gray-200 relative group/carousel carousel-container">
+                            <!-- Pista de imágenes -->
+                            <div class="flex h-full w-full carousel-track overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                                <!-- Imagen 1 -->
+                                <img src="resources/projects/Vnon/vnon_1.png" alt="Cámara Exterior 1" class="w-full h-full object-cover flex-shrink-0 snap-center">
+                                <!-- Imagen 2 -->
+                                <img src="resources/projects/Vnon/vnon_2.png" alt="Cámara Exterior 2" class="w-full h-full object-cover flex-shrink-0 snap-center">
+                                <!-- Imagen 3 -->
+                                <img src="resources/projects/Vnon/vnon_3.png" alt="Interfón Remoto" class="w-full h-full object-cover flex-shrink-0 snap-center">
+                            </div>
+                            
+                            <!-- Botones de control (ocultos por defecto, visibles al pasar el mouse) -->
+                            <button class="prev-btn absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Imagen anterior">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button class="next-btn absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Siguiente imagen">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+
+                            <!-- Indicadores (Puntos) -->
+                            <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-10 carousel-indicators">
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-100 transition-opacity shadow-sm" aria-label="Ir a la imagen 1"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 2"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 3"></button>
+                            </div>
+                        </div>
+                        <!-- Fin del Carrusel -->
+                        
+                        <div class="p-8">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-2.5 py-1 bg-blue-50 text-primary text-xs font-semibold rounded-sm">Edificio Residencial</span>
+                            </div>
+                            <h4 class="text-2xl font-bold text-textHeading mb-4">Renovación de infraestructura de red para edificio residencial</h4>
+                            
+                            <div class="space-y-4 text-sm text-textBody mb-6">
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Problema / Necesidad:</strong>
+                                    <p>La infraestructura de red existente requería una renovación para mejorar la conectividad de los departamentos y proporcionar una base confiable para la atención de incidencias y mantenimiento.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Solución implementada:</strong>
+                                    <p>Se realizó el recableado de la infraestructura de red del edificio, incluyendo instalación, configuración y pruebas de velocidad para verificar el servicio de cada piso y departamento. 
+                                        <br><br>Posteriormente, mantenemos con el cliente un esquema de acompañamiento mensual para mantenimiento preventivo, atención de incidencias y resolución de problemas relacionados con la infraestructura de red. 
+                                        <br><br>También se brinda apoyo a la administración durante intervenciones realizadas por los proveedores de servicios, supervisando técnicamente los trabajos bajo demanda.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Resultado:</strong>
+                                    <p>El edificio cuenta con una infraestructura de red renovada y verificada, junto con un punto de contacto técnico para la administración. El acompañamiento continuo permite atender incidencias, supervisar intervenciones de terceros y mantener la infraestructura en condiciones adecuadas.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Ubicación y fecha:</strong>
+                                    <p>San Antonio Buenavista, Estado de México. Septiembre 2026.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto Placeholder 2 -->
+                    <div class="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-shadow reveal reveal-delay-2 group">
+                        <!-- Inicio del Carrusel -->
+                        <div class="h-64 bg-gray-200 relative overflow-hidden group/carousel carousel-container">
+                            <!-- Pista de imágenes -->
+                            <div class="flex transition-transform duration-500 ease-out h-full w-full carousel-track">
+                                <!-- Imagen 1 -->
+                                <img src="resources/projects/Bkr/bkr_3.png" alt="Cámara Exterior 1" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 2 -->
+                                <img src="resources/projects/Bkr/bkr_1.png" alt="Cámara Exterior 2" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 3 -->
+                                <img src="resources/projects/Bkr/bkr_2.png" alt="Interfón Remoto" class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            
+                            <!-- Botones de control (ocultos por defecto, visibles al pasar el mouse) -->
+                            <button class="prev-btn absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Imagen anterior">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button class="next-btn absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Siguiente imagen">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+
+                            <!-- Indicadores (Puntos) -->
+                            <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-10 carousel-indicators">
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-100 transition-opacity shadow-sm" aria-label="Ir a la imagen 1"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 2"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 3"></button>
+                            </div>
+                        </div>
+                        <!-- Fin del Carrusel -->
+                        
+                        
+                        <div class="p-8">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-2.5 py-1 bg-blue-50 text-primary text-xs font-semibold rounded-sm">Domicilio Particular</span>
+                            </div>
+                            <h4 class="text-2xl font-bold text-textHeading mb-4">Infraestructura de red personalizada y sistema de seguridad</h4>
+                            
+                            <div class="space-y-4 text-sm text-textBody mb-6">
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Problema / Necesidad:</strong>
+                                    <p>El domicilio contaba con diferentes áreas que requerían conectividad estable, incluyendo espacios interiores, oficinas y áreas exteriores. También era necesario integrar dispositivos de seguridad y habilitar acceso remoto a determinados equipos.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Solución implementada:</strong>
+                                    <p>Se diseñó e implementó una infraestructura integral de red utilizando enlaces de fibra óptica para conectar diferentes secciones del inmueble y cableado Cat6 en interiores.
+                                        <br><br>
+                                        Se instaló un rack central de comunicaciones con router y switch de 24 puertos para administrar la infraestructura. También se desplegaron aproximadamente seis puntos de acceso inalámbricos estratégicamente distribuidos y un punto de acceso exterior de amplia cobertura.
+                                        <br><br>
+                                        La infraestructura de seguridad incorporó tres cámaras exteriores. Los servicios fueron organizados mediante segmentación VLAN para separar los dispositivos de seguridad de los dispositivos de uso común.
+                                        <br><br>
+                                        Para la zona de oficinas se incorporó un segundo switch con conectividad de 2.5 Gb/s, enlazado con la infraestructura principal. También se implementó un nodo VPN para habilitar acceso remoto a determinados dispositivos y recursos.
+                                        <br><br>
+                                        Actualmente proporcionamos mantenimiento preventivo y acompañamiento técnico periódico.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Resultado:</strong>
+                                    <p>El inmueble cuenta con una infraestructura de red centralizada, segmentada y preparada para crecimiento, integrando conectividad inalámbrica, enlaces de fibra óptica, oficinas, videovigilancia y acceso remoto dentro de una misma arquitectura.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Ubicación y fecha:</strong>
+                                    <p>Cacalomacán, Toluca, Estado de México. Julio 2026.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto Placeholder 3 -->
+                    <div class="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-shadow reveal reveal-delay-2 group">
+                        <!-- Inicio del Carrusel -->
+                        <div class="h-64 bg-gray-200 relative overflow-hidden group/carousel carousel-container">
+                            <!-- Pista de imágenes -->
+                            <div class="flex transition-transform duration-500 ease-out h-full w-full carousel-track">
+                                <!-- Imagen 1 -->
+                                <img src="resources/projects/Vza/vza_1.png" alt="Cámara Exterior 1" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 2 -->
+                                <img src="resources/projects/Vza/vza_2.png" alt="Cámara Exterior 2" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 3 -->
+                                <img src="resources/projects/Vza/vza_3.png" alt="Interfón Remoto" class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            
+                            <!-- Botones de control (ocultos por defecto, visibles al pasar el mouse) -->
+                            <button class="prev-btn absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Imagen anterior">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button class="next-btn absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Siguiente imagen">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+
+                            <!-- Indicadores (Puntos) -->
+                            <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-10 carousel-indicators">
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-100 transition-opacity shadow-sm" aria-label="Ir a la imagen 1"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 2"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 3"></button>
+                            </div>
+                        </div>
+                        <!-- Fin del Carrusel -->
+                        
+                        <div class="p-8">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-2.5 py-1 bg-blue-50 text-primary text-xs font-semibold rounded-sm">Edificio Residencial</span>
+                            </div>
+                            <h4 class="text-2xl font-bold text-textHeading mb-4">Infraestructura de red y seguridad para edificio residencial</h4>
+                            
+                            <div class="space-y-4 text-sm text-textBody mb-6">
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Problema / Necesidad:</strong>
+                                    <p>Se requería establecer una infraestructura centralizada para proporcionar conectividad y videovigilancia a un edificio de departamentos, dejando preparada la instalación para futuras necesidades de automatización y monitoreo.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Solución implementada:</strong>
+                                    <p>Se instaló un gabinete de comunicaciones equipado con switch PoE, router del proveedor de servicios y supresor de picos. La infraestructura permite centralizar la conectividad del sistema de videovigilancia y habilitar el servicio de Internet para los departamentos.
+                                        <br><br>
+                                        El sistema de seguridad contempla cámaras interiores y exteriores, utilizando soportes de herrería fabricados a medida para las instalaciones exteriores, considerando resistencia y durabilidad.
+                                        <br><br>
+                                        La infraestructura se diseñó con capacidad de crecimiento para futuras aplicaciones, incluyendo posibles sistemas IoT para monitoreo de medidores de agua y otros dispositivos.
+                                        <br><br>
+                                        Se proporciona además acompañamiento y mantenimiento preventivo de manera mensual.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Resultado:</strong>
+                                    <p>Se estableció una infraestructura centralizada y escalable para conectividad y seguridad, proporcionando una base para futuras aplicaciones de automatización y monitoreo del edificio.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Ubicación y fecha:</strong>
+                                    <p>Toluca Centro, Estado de México. Julio 2025.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto Placeholder 4 -->
+                    <div class="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-shadow reveal reveal-delay-1 group">
+                        <!-- Inicio del Carrusel -->
+                        <div class="h-64 bg-gray-200 relative overflow-hidden group/carousel carousel-container">
+                            <!-- Pista de imágenes -->
+                            <div class="flex transition-transform duration-500 ease-out h-full w-full carousel-track">
+                                <!-- Imagen 1 -->
+                                <img src="resources/projects/Mcio/mcio_1.png" alt="Cámara Exterior 1" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 2 -->
+                                <img src="resources/projects/Mcio/mcio_2.png" alt="Cámara Exterior 2" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 3 -->
+                                <img src="resources/projects/Mcio/mcio_1.png" alt="Interfón Remoto" class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            
+                            <!-- Botones de control (ocultos por defecto, visibles al pasar el mouse) -->
+                            <button class="prev-btn absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Imagen anterior">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button class="next-btn absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Siguiente imagen">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+
+                            <!-- Indicadores (Puntos) -->
+                            <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-10 carousel-indicators">
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-100 transition-opacity shadow-sm" aria-label="Ir a la imagen 1"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 2"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 3"></button>
+                            </div>
+                        </div>
+                        <!-- Fin del Carrusel -->
+                        
+                        
+                        <div class="p-8">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-2.5 py-1 bg-blue-50 text-primary text-xs font-semibold rounded-sm">Domicilio Particular</span>
+                            </div>
+                            <h4 class="text-2xl font-bold text-textHeading mb-4">Infraestructura integral de red y seguridad para domicilio</h4>
+                            
+                            <div class="space-y-4 text-sm text-textBody mb-6">
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Problema / Necesidad:</strong>
+                                    <p>El domicilio requería ampliar su cobertura de red y videovigilancia, mejorar la infraestructura de conectividad y contar con una arquitectura que permitiera incorporar nuevos dispositivos de seguridad e IoT.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Solución implementada:</strong>
+                                    <p>Se instaló un sistema de videovigilancia con cuatro cámaras, dos interiores y dos exteriores. Para las cámaras exteriores se fabricaron soportes de herrería a medida y se implementó cableado exterior para conectarlas con la infraestructura principal.
+                                        <br><br>
+                                    También se instaló un gabinete protegido contra la intemperie con un switch para alimentar las cámaras y distribuir la conectividad.
+                                        <br><br>
+                                    La infraestructura de red fue ampliada mediante un router propio conectado al servicio del proveedor de Internet, proporcionando mayor control y capacidad de crecimiento sobre la red del domicilio.
+                                        <br><br>
+                                    Como complemento, se instaló un punto de acceso inalámbrico exterior para proporcionar cobertura en el jardín y permitir futuras conexiones de dispositivos IoT y sistemas de seguridad.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Resultado:</strong>
+                                    <p>Se creó una infraestructura de red y seguridad más organizada y escalable, con mayor control sobre la conectividad del domicilio y capacidad para incorporar nuevos dispositivos y servicios.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Ubicación y fecha:</strong>
+                                    <p>Cacalomacán, Toluca, Estado de México. Septiembre 2024.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto Placeholder 5 -->
+                    <div class="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-shadow reveal reveal-delay-1 group">
+                        <!-- Inicio del Carrusel -->
+                        <div class="h-64 bg-gray-200 relative overflow-hidden group/carousel carousel-container">
+                            <!-- Pista de imágenes -->
+                            <div class="flex transition-transform duration-500 ease-out h-full w-full carousel-track">
+                                <!-- Imagen 1 -->
+                                <img src="resources/projects/caz/caz_1.png" alt="Cámara Exterior 1" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 2 -->
+                                <img src="resources/projects/caz/caz_2.png" alt="Cámara Exterior 2" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 3 -->
+                                <img src="resources/projects/caz/caz_1.png" alt="Interfón Remoto" class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            
+                            <!-- Botones de control (ocultos por defecto, visibles al pasar el mouse) -->
+                            <button class="prev-btn absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Imagen anterior">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button class="next-btn absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Siguiente imagen">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+
+                            <!-- Indicadores (Puntos) -->
+                            <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-10 carousel-indicators">
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-100 transition-opacity shadow-sm" aria-label="Ir a la imagen 1"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 2"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 3"></button>
+                            </div>
+                        </div>
+                        <!-- Fin del Carrusel -->
+                        
+                        <div class="p-8">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-2.5 py-1 bg-blue-50 text-primary text-xs font-semibold rounded-sm">PYME</span>
+                            </div>
+                            <h4 class="text-2xl font-bold text-textHeading mb-4">Sistema de videovigilancia para PYME</h4>
+                            
+                            <div class="space-y-4 text-sm text-textBody mb-6">
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Problema / Necesidad:</strong>
+                                    <p>El negocio requería supervisar diferentes áreas, incluyendo el exterior, mostrador y almacén, sin realizar una instalación de infraestructura cableada extensa dentro del establecimiento.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Solución implementada:</strong>
+                                    <p>Se implementó un sistema de videovigilancia con tres cámaras: una para el exterior, una para el área de mostrador y otra para el almacén. La instalación utilizó conectividad inalámbrica y se realizaron las adecuaciones de red necesarias mediante cableado Cat6 y equipos de conectividad. <br><br>Actualmente mantenemos un esquema de atención mensual para mantenimiento preventivo y soporte de la instalación.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Resultado:</strong>
+                                    <p>El negocio obtuvo cobertura de videovigilancia en sus principales áreas operativas mediante una solución que minimizó la infraestructura física requerida.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Ubicación y fecha:</strong>
+                                    <p>Sanbuenaventura, Toluca, Estado de México. Enero 2025.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto Placeholder 6 -->
+                    <div class="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-shadow reveal reveal-delay-2 group">
+            
+                        <!-- Inicio del Carrusel -->
+                        <div class="h-64 bg-gray-200 relative overflow-hidden group/carousel carousel-container">
+                            <!-- Pista de imágenes -->
+                            <div class="flex transition-transform duration-500 ease-out h-full w-full carousel-track">
+                                <!-- Imagen 1 -->
+                                <img src="resources/projects/ArAv/arav_2.png" alt="Cámara Exterior 1" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 2 -->
+                                <img src="resources/projects/ArAv/arav_1.png" alt="Cámara Exterior 2" class="w-full h-full object-cover flex-shrink-0">
+                                <!-- Imagen 3 -->
+                                <img src="resources/projects/ArAv/arav_3.png" alt="Interfón Remoto" class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            
+                            <!-- Botones de control (ocultos por defecto, visibles al pasar el mouse) -->
+                            <button class="prev-btn absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Imagen anterior">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button class="next-btn absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 hover:bg-primary text-white rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all cursor-pointer z-10" aria-label="Siguiente imagen">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+
+                            <!-- Indicadores (Puntos) -->
+                            <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-10 carousel-indicators">
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-100 transition-opacity shadow-sm" aria-label="Ir a la imagen 1"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 2"></button>
+                                <button class="w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity shadow-sm" aria-label="Ir a la imagen 3"></button>
+                            </div>
+                        </div>
+                        <!-- Fin del Carrusel -->
+                        
+
+                        <div class="p-8">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-2.5 py-1 bg-blue-50 text-primary text-xs font-semibold rounded-sm">Domicilio Particular</span>
+                            </div>
+                            <h4 class="text-2xl font-bold text-textHeading mb-4">Sistema de seguridad exterior e interfón remoto para domicilio</h4>
+                            
+                            <div class="space-y-4 text-sm text-textBody mb-6">
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Problema / Necesidad:</strong>
+                                    <p>El domicilio requería mejorar la supervisión de sus accesos exteriores y contar con una forma de atender el acceso a distancia.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Solución implementada:</strong>
+                                    <p>Se instalaron dos cámaras exteriores colocadas en posiciones contrapuestas para cubrir los principales accesos del domicilio. La infraestructura utilizó cableado Cat6 para exteriores y un switch PoE, proporcionando alimentación y conectividad a las cámaras desde un punto central.
+                                        <br><br>
+                                    Como parte de la solución, se habilitó también la posibilidad de utilizar el sistema de interfón de manera remota.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Resultado:</strong>
+                                    <p>El domicilio obtuvo cobertura de videovigilancia sobre sus accesos principales y la posibilidad de gestionar el acceso de forma remota, utilizando una infraestructura de red cableada diseñada para exteriores.</p>
+                                </div>
+                                <div>
+                                    <strong class="text-gray-900 block mb-1">Ubicación y fecha:</strong>
+                                    <p>Toluca Centro, Estado de México. Enero 2026.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- POR QUÉ MAPA SECTION -->
+        <section id="nosotros" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    
+                    <!-- Sobre MAPA (Texto) -->
+                    <div class="reveal">
+                        <h2 class="text-sm font-semibold text-primary tracking-wider uppercase mb-2">Sobre Nosotros</h2>
+                        <h3 class="text-3xl md:text-4xl font-bold text-textHeading mb-6">Profesionalismo y especialización a tu alcance</h3>
+                        <div class="prose prose-lg text-textBody text-gray-600">
+                            <p class="mb-4">
+                                <strong>MAPA</strong> es un proyecto independiente especializado en infraestructura tecnológica y sistemas de seguridad.
+                            </p>
+                            <p>
+                                Trabajamos enfocados en el diseño, instalación y mantenimiento de soluciones de conectividad, redes, videovigilancia y servicios tecnológicos. Nuestro objetivo es brindar un nivel de ingeniería y orden corporativo a proyectos para particulares, oficinas y negocios, priorizando instalaciones limpias, seguras y escalables.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Puntos clave -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-light p-6 rounded border border-gray-100 reveal reveal-delay-1">
+                            <i data-lucide="settings" class="w-6 h-6 text-primary mb-3"></i>
+                            <h4 class="font-bold text-textHeading mb-2">Soluciones personalizadas</h4>
+                            <p class="text-sm text-textBody">Cada instalación parte estrictamente de las necesidades reales y específicas del cliente.</p>
+                        </div>
+                        <div class="bg-light p-6 rounded border border-gray-100 reveal reveal-delay-2">
+                            <i data-lucide="layers" class="w-6 h-6 text-primary mb-3"></i>
+                            <h4 class="font-bold text-textHeading mb-2">Infraestructura organizada</h4>
+                            <p class="text-sm text-textBody">Diseñamos pensando en facilitar el mantenimiento futuro y permitir el crecimiento ordenado.</p>
+                        </div>
+                        <div class="bg-light p-6 rounded border border-gray-100 reveal reveal-delay-3">
+                            <i data-lucide="lock" class="w-6 h-6 text-primary mb-3"></i>
+                            <h4 class="font-bold text-textHeading mb-2">Seguridad desde el diseño</h4>
+                            <p class="text-sm text-textBody">La seguridad no se agrega al final como un parche; forma parte integral de la arquitectura.</p>
+                        </div>
+                        <div class="bg-light p-6 rounded border border-gray-100 reveal">
+                            <i data-lucide="users" class="w-6 h-6 text-primary mb-3"></i>
+                            <h4 class="font-bold text-textHeading mb-2">Acompañamiento continuo</h4>
+                            <p class="text-sm text-textBody">Somos tu aliado técnico de confianza. Seguimos disponibles para mantenimiento, soporte y futuras ampliaciones.</p>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- Punto extra ancho completo -->
+                <div class="mt-8 bg-dark text-white p-8 rounded-lg text-center reveal">
+                    <i data-lucide="globe" class="w-8 h-8 mx-auto mb-4 text-blue-300"></i>
+                    <h4 class="font-bold text-xl mb-2">Visión integral</h4>
+                    <p class="text-gray-300 max-w-3xl mx-auto">Comprendemos que las redes, la conectividad, la seguridad y los servicios tecnológicos no son elementos aislados; pueden y deben trabajar en sinergia como una sola infraestructura sólida.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section id="contacto" class="py-24 bg-primary relative overflow-hidden text-center">
+            <!-- Background Elements -->
+            <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <svg class="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+                </svg>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">¿Tienes un proyecto o necesitas mejorar tu infraestructura?</h2>
+                <p class="text-xl text-blue-100 mb-10">Ponte en contacto con nosotros para analizar tus requerimientos y diseñar una solución tecnológica a tu medida.</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <!-- INSTRUCCIÓN: Reemplazar href con los enlaces reales a correo o whatsapp -->
+                    <a href="mailto:mapa.eclipsed@outlook.com" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-lg font-medium rounded text-primary bg-white hover:bg-gray-50 transition-colors shadow-lg gap-2">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        Solicitar cotización
+                    </a>
+                    <a href="https://wa.me/527227935036" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center px-8 py-4 border border-white text-lg font-medium rounded text-white hover:bg-white/10 transition-colors gap-2">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        Envíanos mensaje
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-darkAlt text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                
+                <!-- Info Empresa -->
+                <div class="md:col-span-2">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="#" class="flex items-center gap-2">
+                            <img src="./resources/MAPA_logo_noBackground/2.png" alt="MAPA Logo" class="h-12">
+                        </a>
+                    </div>
+                    <br>
+                    <p class="text-sm text-gray-400 max-w-sm mb-4">
+                        Servicios profesionales de infraestructura tecnológica y sistemas de seguridad. Diseñamos soluciones que funcionan como un sistema integrado.
+                    </p>
+                    <div class="flex space-x-4">
+                        <!-- INSTRUCCIÓN: Descomentar y rellenar enlaces si se usan redes sociales -->
+                        <!--
+                        <a href="[Link Facebook]" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="[Link Instagram]" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="[Link LinkedIn]" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        -->
+                    </div>
+                </div>
+
+                <!-- Enlaces rápidos -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Navegación</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#inicio" class="hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#servicios" class="hover:text-white transition-colors">Servicios</a></li>
+                        <li><a href="#proyectos" class="hover:text-white transition-colors">Proyectos</a></li>
+                        <li><a href="#nosotros" class="hover:text-white transition-colors">Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacto Placeholder -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contacto</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 mt-0.5 shrink-0"></i>
+                            <a href="mailto:mapa.eclipsed@outlook.com" class="hover:text-white transition-colors break-words">mapa.eclipsed@outlook.com</a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 mt-0.5 shrink-0"></i>
+                            <a href="tel:+527227935036" class="hover:text-white transition-colors">+527227935036</a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0"></i>
+                            <span>Toluca, Estado de México</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>&copy; <span id="current-year"></span> MAPA. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        // Actualizar año del copyright
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Lógica del menú móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Comportamiento del Navbar al hacer scroll (Añadir sombra/cambio de fondo)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-sm');
+            }
+        });
+
+        // Animación de revelado al hacer scroll (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOptions = {
+            threshold: 0.15, // Porcentaje del elemento visible antes de animar
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Dejar de observar una vez animado
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+
+        // LOgica de carrusel de imagenes
+        document.addEventListener('DOMContentLoaded', () => {
+            // Encontrar todos los carruseles en la página
+            const carousels = document.querySelectorAll('.carousel-container');
+            
+            carousels.forEach(carousel => {
+                const track = carousel.querySelector('.carousel-track');
+                const slides = Array.from(track.children);
+                const nextBtn = carousel.querySelector('.next-btn');
+                const prevBtn = carousel.querySelector('.prev-btn');
+                const indicators = carousel.querySelectorAll('.carousel-indicators button');
+                
+                let currentIndex = 0;
+                
+                // Función para actualizar la vista del carrusel
+                function updateCarousel() {
+                    // Mover la pista de imágenes
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    
+                    // Actualizar la opacidad de los puntos indicadores
+                    indicators.forEach((dot, index) => {
+                        if(index === currentIndex) {
+                            dot.classList.remove('opacity-50');
+                            dot.classList.add('opacity-100');
+                        } else {
+                            dot.classList.add('opacity-50');
+                            dot.classList.remove('opacity-100');
+                        }
+                    });
+                }
+                
+                // Evento para botón "Siguiente"
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+                    updateCarousel();
+                });
+                
+                // Evento para botón "Anterior"
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+                    updateCarousel();
+                });
+                
+                // Eventos para los puntos indicadores
+                indicators.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
